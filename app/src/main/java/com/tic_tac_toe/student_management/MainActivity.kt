@@ -19,12 +19,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // TODO: Step 1 - "Add student" button
-        // TODO: Step 2 - Navigate to AddStudentActivity
-        // TODO - Step 3 - Create AddStudentLayout
-        // TODO - Step 4 - "Save student" button
-
-
         val addStudentButton: Button = findViewById(R.id.main_activity_addStudent_btn)
         addStudentButton.setOnClickListener {
             val intent = Intent(this, AddStudentActivity::class.java)
