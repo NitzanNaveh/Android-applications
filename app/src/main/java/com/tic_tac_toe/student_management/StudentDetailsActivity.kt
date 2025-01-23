@@ -2,8 +2,11 @@ package com.tic_tac_toe.student_management
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class StudentDetailsActivity : AppCompatActivity() {
@@ -22,18 +25,23 @@ class StudentDetailsActivity : AppCompatActivity() {
         val idTextView: TextView = findViewById(R.id.student_details_activity_id)
         val phoneTextView: TextView = findViewById(R.id.student_details_activity_phone_number)
         val addressTextView: TextView = findViewById(R.id.student_details_activity_address)
-        val isCheckedTextView: TextView = findViewById(R.id.student_details_activity_checkBox)
+        val checkBox: CheckBox = findViewById(R.id.student_details_activity_checkBox)
         val editButton: Button = findViewById(R.id.student_details_activity_edit_button)
         val cancelButton: Button = findViewById(R.id.student_details_activity_cancel_button)
 
-        // Set student details
         nameTextView.text = name
         idTextView.text = id
         phoneTextView.text = phone
         addressTextView.text = address
-        isCheckedTextView.text = if (isChecked) "Checked" else "Not Checked"
+        checkBox.isChecked = isChecked
 
         cancelButton.setOnClickListener {
+            val updatedIsChecked = checkBox.isChecked
+            val intent = Intent().apply {
+                putExtra("updated_student_id", id)
+                putExtra("updated_student_isChecked", updatedIsChecked)
+            }
+            setResult(RESULT_OK, intent)
             finish()
         }
 
@@ -43,7 +51,7 @@ class StudentDetailsActivity : AppCompatActivity() {
                 putExtra("id", id)
                 putExtra("number", phone)
                 putExtra("address", address)
-                putExtra("isChecked", isChecked)
+                putExtra("isChecked", checkBox.isChecked)
             }
             startActivityForResult(intent, 1)
         }
@@ -55,10 +63,29 @@ class StudentDetailsActivity : AppCompatActivity() {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             val deletedStudentId = data?.getStringExtra("deleted_student_id")
             if (deletedStudentId != null) {
-                val resultIntent = Intent().apply {
+                val intent = Intent().apply {
                     putExtra("deleted_student_id", deletedStudentId)
                 }
-                setResult(RESULT_OK, resultIntent)
+                setResult(RESULT_OK, intent)
+                finish()
+                return
+            }
+
+            val updatedName = data?.getStringExtra("updated_student_name")
+            val updatedId = data?.getStringExtra("updated_student_id")
+            val updatedPhone = data?.getStringExtra("updated_student_phone")
+            val updatedAddress = data?.getStringExtra("updated_student_address")
+            val updatedIsChecked = data?.getBooleanExtra("updated_student_isChecked", false)
+
+            if (updatedName != null && updatedId != null) {
+                val intent = Intent().apply {
+                    putExtra("updated_student_name", updatedName)
+                    putExtra("updated_student_id", updatedId)
+                    putExtra("updated_student_phone", updatedPhone)
+                    putExtra("updated_student_address", updatedAddress)
+                    putExtra("updated_student_isChecked", updatedIsChecked)
+                }
+                setResult(RESULT_OK, intent) // Pass updated student data back
                 finish()
             }
         }

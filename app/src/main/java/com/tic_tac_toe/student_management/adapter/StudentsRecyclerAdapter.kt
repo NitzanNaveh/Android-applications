@@ -25,7 +25,9 @@ class StudentsRecyclerAdapter(private val students: List<Student>?) : RecyclerVi
         val student = students?.get(position)
         holder.bind(student, position)
 
-        // Set up click listener to navigate to StudentDetails
+        holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
+            student?.isChecked = isChecked
+        }
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, StudentDetailsActivity::class.java).apply {
                 putExtra("name", student?.name)

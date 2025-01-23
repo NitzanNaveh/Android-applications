@@ -66,27 +66,43 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
         super.onResume()
         adapter?.notifyDataSetChanged()
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == RESULT_OK) {
             val deletedStudentId = data?.getStringExtra("deleted_student_id")
             if (deletedStudentId != null) {
-                // Debugging: Log to confirm the ID is received
-                Log.d("StudentsRecyclerView", "Deleted student ID: $deletedStudentId")
-
-                // Find and remove the student from the list
                 val studentToRemove = students?.find { it.id == deletedStudentId }
                 if (studentToRemove != null) {
                     students?.remove(studentToRemove)
-                    adapter?.notifyDataSetChanged() // Refresh the RecyclerView
-
-                    // Debugging: Confirm removal
+                    adapter?.notifyDataSetChanged()
                     Log.d("StudentsRecyclerView", "Student removed: ${studentToRemove.name}")
                     Toast.makeText(this, "Student Deleted", Toast.LENGTH_SHORT).show()
                 } else {
                     Log.e("StudentsRecyclerView", "Student with ID $deletedStudentId not found.")
+                }
+                return
+            }
+
+            val updatedName = data?.getStringExtra("updated_student_name") ?: ""
+            val updatedId = data?.getStringExtra("updated_student_id") ?: ""
+            val updatedPhone = data?.getStringExtra("updated_student_phone") ?: ""
+            val updatedAddress = data?.getStringExtra("updated_student_address") ?: ""
+            val updatedCheckboxState = data?.getBooleanExtra("updated_student_isChecked", false) // Renamed variable
+
+            if (updatedId.isNotEmpty()) {
+                val studentToUpdate = students?.find { it.id == updatedId }
+                if (studentToUpdate != null) {
+                    if (updatedName.isNotEmpty()) studentToUpdate.name = updatedName
+                    if (updatedPhone.isNotEmpty()) studentToUpdate.phone = updatedPhone
+                    if (updatedAddress.isNotEmpty()) studentToUpdate.address = updatedAddress
+                    studentToUpdate.isChecked = updatedCheckboxState ?: false
+
+                    adapter?.notifyDataSetChanged()
+                    Log.d("StudentsRecyclerView", "Student updated: $updatedName")
+                    Toast.makeText(this, "Student Updated in List", Toast.LENGTH_SHORT).show()
+                } else {
+                    Log.e("StudentsRecyclerView", "Student with ID $updatedId not found.")
                 }
             }
         }

@@ -3,6 +3,7 @@ package com.tic_tac_toe.student_management
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,25 +24,38 @@ class StudentEditActivity : AppCompatActivity() {
         val idEditText: EditText = findViewById(R.id.student_edit_id)
         val phoneEditText: EditText = findViewById(R.id.student_edit_phone)
         val addressEditText: EditText = findViewById(R.id.student_edit_address)
-        val saveButton: Button = findViewById(R.id.student_edit_update_button)
+        val updateButton: Button = findViewById(R.id.student_edit_update_button)
         val deleteButton: Button = findViewById(R.id.student_edit_delete_button)
         val cancelButton: Button = findViewById(R.id.student_edit_cancel_button)
+        val checkBox: CheckBox = findViewById(R.id.student_edit_checkBox)
+        checkBox.isChecked = isChecked
+
 
         nameEditText.setText(name)
         idEditText.setText(id)
         phoneEditText.setText(phone)
         addressEditText.setText(address)
 
-        saveButton.setOnClickListener {
+        updateButton.setOnClickListener {
             val updatedName = nameEditText.text.toString()
             val updatedId = idEditText.text.toString()
             val updatedPhone = phoneEditText.text.toString()
             val updatedAddress = addressEditText.text.toString()
+            val updatedIsChecked = checkBox.isChecked
 
+            val intent = Intent().apply {
+                putExtra("updated_student_name", updatedName)
+                putExtra("updated_student_id", updatedId)
+                putExtra("updated_student_phone", updatedPhone)
+                putExtra("updated_student_address", updatedAddress)
+                putExtra("updated_student_isChecked", updatedIsChecked)
+            }
+
+            setResult(RESULT_OK, intent)
             Toast.makeText(this, "Updated: $updatedName, $updatedId", Toast.LENGTH_SHORT).show()
-
             finish()
         }
+
 
         deleteButton.setOnClickListener {
             val intent = Intent().apply {

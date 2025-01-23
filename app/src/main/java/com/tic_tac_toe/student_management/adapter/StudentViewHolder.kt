@@ -15,7 +15,7 @@ class StudentViewHolder(
 
     private val nameTextView: TextView = itemView.findViewById(R.id.student_row_name)
     private val idTextView: TextView = itemView.findViewById(R.id.student_row_id)
-    private val checkBox: CheckBox = itemView.findViewById(R.id.student_row_check_box)
+    val checkBox: CheckBox = itemView.findViewById(R.id.student_row_check_box)
     private val phoneTextView: TextView = itemView.findViewById(R.id.student_row_phone)
     private val addressTextView: TextView = itemView.findViewById(R.id.student_row_address)
 

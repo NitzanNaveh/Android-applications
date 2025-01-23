@@ -1,10 +1,10 @@
 package com.tic_tac_toe.student_management.model
 
 data class Student(
-    val name: String,
+    var name: String,
     val id: String,
-    val phone: String,
-    val address: String,
+    var phone: String,
+    var address: String,
     val avatarUrl: String,
     var isChecked: Boolean = false
 )
