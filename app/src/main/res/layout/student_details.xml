@@ -35,8 +35,8 @@
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <EditText
-        android:id="@+id/add_student_activity_name_edit_text"
+    <TextView
+        android:id="@+id/student_details_activity_name_edit_text"
         android:hint="Enter student's full name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -48,8 +48,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7" />
 
-    <EditText
-        android:id="@+id/add_student_activity_id"
+    <TextView
+        android:id="@+id/student_details_activity_id"
         android:hint="Enter ID"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -62,39 +62,28 @@
         app:layout_constraintStart_toEndOf="@+id/textView8" />
 
     <Button
-        android:id="@+id/add_student_activity_save_button"
+        android:id="@+id/student_details_activity_edit_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="4dp"
-        android:text="Save"
+        android:text="Edit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/add_student_activity_cancel_button"
+        app:layout_constraintEnd_toStartOf="@+id/student_details_activity_cancel_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/add_student_activity_cancel_button"
+        android:id="@+id/student_details_activity_cancel_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="8dp"
         android:text="Cancel"
-        app:layout_constraintBaseline_toBaselineOf="@+id/add_student_activity_save_button"
+        app:layout_constraintBaseline_toBaselineOf="@+id/student_details_activity_edit_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/add_student_activity_save_button" />
-
-    <TextView
-        android:id="@+id/save_message_text_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="31dp"
-        app:layout_constraintBottom_toTopOf="@+id/add_student_activity_save_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/student_details_activity_edit_button" />
 
     <TextView
         android:id="@+id/textView"
@@ -102,10 +91,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="Phone:"
-        app:layout_constraintEnd_toStartOf="@+id/add_student_activity_phone_number"
+        app:layout_constraintEnd_toStartOf="@+id/student_details_activity_phone_number"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/add_student_activity_id" />
+        app:layout_constraintTop_toBottomOf="@+id/student_details_activity_id" />
 
     <TextView
         android:id="@+id/textView2"
@@ -113,13 +102,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="Address:"
-        app:layout_constraintEnd_toStartOf="@+id/add_student_activity_address"
+        app:layout_constraintEnd_toStartOf="@+id/student_details_activity_address"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <EditText
-        android:id="@+id/add_student_activity_phone_number"
+    <TextView
+        android:id="@+id/student_details_activity_phone_number"
         android:hint="Enter phone number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -132,9 +121,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textView" />
 
-    <EditText
-        android:id="@+id/add_student_activity_address"
-        android:hint="Enter address"
+    <TextView
+        android:id="@+id/student_details_activity_address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -147,7 +135,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView2" />
 
     <CheckBox
-        android:id="@+id/add_student_activity_checkBox"
+        android:id="@+id/student_details_activity_checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

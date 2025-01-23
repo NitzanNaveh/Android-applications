@@ -71,11 +71,15 @@ class StudentsListViewActivity : AppCompatActivity() {
             val nameTextView: TextView? = view?.findViewById(R.id.student_row_name)
             val idTextView: TextView? = view?.findViewById(R.id.student_row_id)
             val checkBox: CheckBox? = view?.findViewById(R.id.student_row_check_box)
+            val phone: TextView? = view?.findViewById(R.id.student_row_phone)
+            val address: TextView? = view?.findViewById(R.id.student_row_address)
 
             Log.d("TAG", "Inflating position: $position")
 
             nameTextView?.text = student?.name
             idTextView?.text = student?.id
+            phone?.text = student?.phone
+            address?.text = student?.address
 
             checkBox?.apply {
                 isChecked = student?.isChecked ?: false
