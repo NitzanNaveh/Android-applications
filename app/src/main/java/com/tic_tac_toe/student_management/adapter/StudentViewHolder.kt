@@ -8,57 +8,31 @@ import com.tic_tac_toe.student_management.OnItemClickListener
 import com.tic_tac_toe.student_management.R
 import com.tic_tac_toe.student_management.model.Student
 
-
 class StudentViewHolder(
     itemView: View,
     private val listener: OnItemClickListener?
-    ):
+) : RecyclerView.ViewHolder(itemView) {
 
-    RecyclerView.ViewHolder(itemView) {
-    private var nameTextView: TextView? = null
-    private var idTextView: TextView? = null
-    private var checkBox: CheckBox? = null
-    private var student: Student? = null
-    private var phoneTextView: TextView? = null
-    private var address: TextView? = null
+    private val nameTextView: TextView = itemView.findViewById(R.id.student_row_name)
+    private val idTextView: TextView = itemView.findViewById(R.id.student_row_id)
+    private val checkBox: CheckBox = itemView.findViewById(R.id.student_row_check_box)
+    private val phoneTextView: TextView = itemView.findViewById(R.id.student_row_phone)
+    private val addressTextView: TextView = itemView.findViewById(R.id.student_row_address)
 
-    init {
-        phoneTextView = itemView.findViewById(R.id.student_row_phone)
-        nameTextView = itemView.findViewById(R.id.student_row_name)
-        idTextView = itemView.findViewById(R.id.student_row_id)
-        checkBox = itemView.findViewById(R.id.student_row_check_box)
-        address = itemView.findViewById(R.id.student_row_address)
+    fun bind(student: Student?, position: Int) {
+        nameTextView.text = student?.name
+        idTextView.text = student?.id
+        phoneTextView.text = student?.phone
+        addressTextView.text = student?.address
+        checkBox.isChecked = student?.isChecked ?: false
 
-
-        checkBox?.apply {
-            setOnClickListener { view ->
-                (tag as? Int)?.let { tag ->
-                    student?.isChecked = (view as? CheckBox)?.isChecked ?: false
-                }
-            }
+        checkBox.setOnCheckedChangeListener { _, isChecked ->
+            student?.isChecked = isChecked
         }
 
         itemView.setOnClickListener {
-        }
-        listener?.onItemClick(adapterPosition)
-        listener?.onItemClick(student)
-    }
-
-    fun bind(student: Student?, position: Int) {
-        this.student = student
-        nameTextView?.text = student?.name
-        idTextView?.text = student?.id
-        phoneTextView?.text = student?.phone
-        address?.text = student?.address
-
-        checkBox?.apply {
-            isChecked = student?.isChecked ?: false
-            tag = position
-
-            setOnCheckedChangeListener { _, isChecked ->
-                // Update the student's `isChecked` state in the shared model
-                student?.isChecked = isChecked
-            }
+            listener?.onItemClick(position)
+            listener?.onItemClick(student)
         }
     }
 }

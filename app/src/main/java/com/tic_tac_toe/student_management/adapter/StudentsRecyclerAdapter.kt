@@ -4,9 +4,9 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.tic_tac_toe.student_management.OnItemClickListener
 import com.tic_tac_toe.student_management.R
 import com.tic_tac_toe.student_management.StudentDetails
-import com.tic_tac_toe.student_management.OnItemClickListener
 import com.tic_tac_toe.student_management.model.Student
 
 class StudentsRecyclerAdapter(private val students: List<Student>?) : RecyclerView.Adapter<StudentViewHolder>() {
@@ -21,14 +21,18 @@ class StudentsRecyclerAdapter(private val students: List<Student>?) : RecyclerVi
     override fun getItemCount(): Int = students?.size ?: 0
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
-        holder.bind(students?.get(position), position)
+        val student = students?.get(position)
+        holder.bind(student, position)
+
+        // Set up click listener to navigate to StudentDetails
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, StudentDetails::class.java)
-            intent.putExtra("name", students?.get(position)?.name)
-            intent.putExtra("id", students?.get(position)?.id)
-            intent.putExtra("number", students?.get(position)?.phone)
-            intent.putExtra("address", students?.get(position)?.address)
-            intent.putExtra("isChecked", students?.get(position)?.isChecked ?: false)
+            val intent = Intent(holder.itemView.context, StudentDetails::class.java).apply {
+                putExtra("name", student?.name)
+                putExtra("id", student?.id)
+                putExtra("number", student?.phone)
+                putExtra("address", student?.address)
+                putExtra("isChecked", student?.isChecked ?: false)
+            }
             holder.itemView.context.startActivity(intent)
         }
     }

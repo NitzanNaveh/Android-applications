@@ -27,9 +27,15 @@
             android:allowEmbedded="true">
         </activity>
 
+
         <activity
             android:name=".AddStudentActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".StudentDetails"
+            android:exported="true">
+        </activity>
 
     </application>
 

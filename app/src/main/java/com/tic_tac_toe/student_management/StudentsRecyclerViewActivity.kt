@@ -9,8 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tic_tac_toe.student_management.AddStudentActivity
-import com.tic_tac_toe.student_management.R
 import com.tic_tac_toe.student_management.adapter.StudentsRecyclerAdapter
 import com.tic_tac_toe.student_management.model.Model
 import com.tic_tac_toe.student_management.model.Student
