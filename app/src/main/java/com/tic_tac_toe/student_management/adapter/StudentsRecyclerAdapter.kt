@@ -3,10 +3,11 @@ package com.tic_tac_toe.student_management.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.tic_tac_toe.student_management.OnItemClickListener
 import com.tic_tac_toe.student_management.R
-import com.tic_tac_toe.student_management.StudentDetails
+import com.tic_tac_toe.student_management.StudentDetailsActivity
 import com.tic_tac_toe.student_management.model.Student
 
 class StudentsRecyclerAdapter(private val students: List<Student>?) : RecyclerView.Adapter<StudentViewHolder>() {
@@ -26,14 +27,14 @@ class StudentsRecyclerAdapter(private val students: List<Student>?) : RecyclerVi
 
         // Set up click listener to navigate to StudentDetails
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, StudentDetails::class.java).apply {
+            val intent = Intent(holder.itemView.context, StudentDetailsActivity::class.java).apply {
                 putExtra("name", student?.name)
                 putExtra("id", student?.id)
                 putExtra("number", student?.phone)
                 putExtra("address", student?.address)
                 putExtra("isChecked", student?.isChecked ?: false)
             }
-            holder.itemView.context.startActivity(intent)
+            (holder.itemView.context as AppCompatActivity).startActivityForResult(intent, 1)
         }
     }
 }

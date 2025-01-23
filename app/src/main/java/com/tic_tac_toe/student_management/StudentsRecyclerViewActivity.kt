@@ -3,6 +3,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -70,16 +71,26 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == RESULT_OK) {
-            // Check if a student was deleted
             val deletedStudentId = data?.getStringExtra("deleted_student_id")
             if (deletedStudentId != null) {
-                // Find the student and remove it
+                // Debugging: Log to confirm the ID is received
+                Log.d("StudentsRecyclerView", "Deleted student ID: $deletedStudentId")
+
+                // Find and remove the student from the list
                 val studentToRemove = students?.find { it.id == deletedStudentId }
                 if (studentToRemove != null) {
                     students?.remove(studentToRemove)
                     adapter?.notifyDataSetChanged() // Refresh the RecyclerView
+
+                    // Debugging: Confirm removal
+                    Log.d("StudentsRecyclerView", "Student removed: ${studentToRemove.name}")
+                    Toast.makeText(this, "Student Deleted", Toast.LENGTH_SHORT).show()
+                } else {
+                    Log.e("StudentsRecyclerView", "Student with ID $deletedStudentId not found.")
                 }
             }
         }
     }
+
+
 }
