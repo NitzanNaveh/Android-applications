@@ -28,7 +28,7 @@ Installation & Running the App
 
 1. Clone the Repository
 
- git clone https://github.com/NitzanNaveh/StudentsApp.git
+ git clone https://github.com/NitzanNaveh/Android-applications-.git
  
  cd StudentsApp
 
