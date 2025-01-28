@@ -1,4 +1,4 @@
-Students App - Assignment 2
+Students List App 
 
 Overview
 
