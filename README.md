@@ -28,7 +28,7 @@ ViewBinding (for UI interactions)
 
 1️⃣ Clone the Repository
 
-git clone https://github.com/YOUR_GITHUB_USERNAME/StudentsApp.git
+git clone https: https://github.com/NitzanNaveh/Android-applications.git
 
 cd StudentsApp
 
